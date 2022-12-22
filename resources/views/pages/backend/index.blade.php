@@ -1,6 +1,6 @@
 @extends('layouts.backend.master')
 
-@section('title', 'Selamat datang di Learnity ' . Auth::user()->name . '!')
+@section('title', 'Selamat datang di Catatan Organisasi, ' . Auth::user()->name . '!')
 @section('content')
 
 @push('datatable-styles')
@@ -56,12 +56,12 @@
                         </h4>
                         <p>
                             <span>
-                                Selamat datang di Learnity, kamu dapat mengelola semua
-                                data akademik dan menjelajahi semua resources disini
+                                Selamat datang di Catatan Organisasi, kamu dapat mengelola semua
+                                data organisasi dan menjelajahi semua resources disini
                             </span>
                         </p>
                         <div class="whatsnew-btn">
-                            <a href="{{url('dashboard/jadwal-pelajaran')}}" class="btn btn-primary px-4 py-2">Mulai
+                            <a href="{{route('jadwal-rapat.index')}}" class="btn btn-primary px-4 py-2">Mulai
                                 Sekarang ⇾
                             </a>
                         </div>
@@ -126,124 +126,6 @@
                 <div class="card-footer">
                     <div class="bottom-btn">
                         <a href="{{url('/dashboard/todolist')}}">Lihat semua todolist ...</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xl-4 xl-50 appointment-sec box-col-6">
-            <div class="row">
-                <div class="col-xl-12 appointment">
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="header-top">
-                                <h5 class="m-0">📝 • Catatanmu</h5>
-                            </div>
-                        </div>
-                        <div class="card-body py-3">
-                            <div class="appointment-table table-responsive">
-                                <table class="table">
-                                    <tbody>
-                                        @forelse ($catatan as $item)
-                                        <tr>
-                                            <td class="font-weight-bold">
-                                                <div class="d-flex py-1 align-items-center">
-                                                    <div class="flex-fill">
-                                                        <div class="font-weight-bold">{{$item->judul}}</div>
-                                                        <div class="text-muted"><a href="#"
-                                                                class="text-reset">{{$item->matkul}}</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-
-                                            <td class="text-right">
-                                                <a href="{{route('notes.show', $item->id)}}">
-                                                    <div class="button btn btn-primary">Lihat</div>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        @empty
-                                        <tr>
-                                            <td>
-                                                <h6>Kamu belum buat catatan, <a href="#">buat sekarang ⇾</a></h6>
-                                            </td>
-                                        </tr>
-                                        @endforelse
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th class="ml-0 pl-0 py-2 text-left" style="border-top:none;">
-                                                <a href="{{url('/dashboard/catatan-pelajaran')}}"> Lihat semua ... </a>
-                                            </th>
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="card">
-                <div class="card-header">
-                    <h5>📚 • Jadwal Pelajaranmu</span>
-                </div>
-                <div class="card-body">
-                    <div class="dt-ext table-responsive">
-                        <table class="display" id="auto-fill">
-                            <thead>
-                                <tr>
-                                    <th>Nama Mata Kuliah</th>
-                                    <th>Hari</th>
-                                    <th>Waktu</th>
-                                    <th>Kelas</th>
-                                    <th>SKS</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse ($jadwal as $item)
-                                <tr>
-                                    <td>
-                                        <div class="d-flex py-1 align-items-center">
-                                            <div class="avatars mr-2">
-                                                <div class="avatar ratio">
-                                                    <img style="object-fit: cover;
-                                                        width: 40px;
-                                                        height: 40px;" class="b-r-8"
-                                                        src="https://ui-avatars.com/api/?background=4466f2&color=fff&name={{$item->nama_dosen}}">
-                                                </div>
-                                            </div>
-                                            <div class="flex-fill">
-                                                <div class="font-weight-bold">{{$item->nama_matkul}}</div>
-                                                <div class="text-muted">
-                                                    <a href="javascript:void(0)" class="text-reset">{{$item->nama_dosen}}</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>{{$item->hari}}</td>
-                                    <td>({{$item->waktu_mulai}} — {{$item->waktu_selesai}})</td>
-                                    <td>{{$item->kelas}}</td>
-                                    <td>{{$item->sks}}</td>
-                                </tr>
-                                @empty
-                                @endforelse
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>Nama Mata Kuliah</th>
-                                    <th>Hari</th>
-                                    <th>Waktu</th>
-                                    <th>Kelas</th>
-                                    <th>SKS</th>
-                                </tr>
-                            </tfoot>
-                        </table>
                     </div>
                 </div>
             </div>

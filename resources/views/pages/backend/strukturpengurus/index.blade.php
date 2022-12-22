@@ -1,6 +1,6 @@
 @extends('layouts.backend.master')
 
-@section('title', 'Jadwal Rapat Organisasi — Learnity')
+@section('title', 'Struktur Pengurus Organisasi — Catatan Organisasi')
 @section('content')
 
 @push('datatable-styles')
@@ -14,18 +14,18 @@
     <div class="page-title">
         <div class="card card-absolute mt-5 mt-md-4">
             <div class="card-header bg-primary">
-                <h5 class="text-white">📚 • Jadwal Rapat Organisasi</h5>
+                <h5 class="text-white">📚 • Struktur Pengurus Organisasi</h5>
             </div>
             @if(Auth::user()->name == 'Superadmin')
             <div class="card-body">
                 <p>
-                    Dibawah ini adalah jadwal rapat yang telah kamu tambahkan.
+                    Dibawah ini adalah struktur pengurus organisasi kamu.
                     <span class="d-none d-md-inline">
                         Jadwal dibawah juga bisa kamu edit dengan
                         menekan logo pencil berwarna ungu
                         dan hapus dengan menekan logo sampah berwarna merah.
-                        Ingin menambahkan rapat? tambah jadwalmu
-                        <a href="{{route('jadwal-rapat.create')}}">disini ⇾</a>
+                        Ingin menambahkan pengurus? tambah struktur pengurus
+                        <a href="{{route('struktur-pengurus.create')}}">disini ⇾</a>
                     </span>
                 </p>
             </div>
@@ -41,10 +41,9 @@
                         <table class="display" id="auto-fill">
                             <thead>
                                 <tr>
-                                    <th>Judul Rapat</th>
-                                    <th>Tanggal</th>
-                                    <th>Waktu</th>
-                                    <th>Tempat</th>
+                                    <th>Nama Pengurus</th>
+                                    <th>Jabatan</th>
+                                    <th>Angkatan</th>
                                     @if(Auth::user()->name == 'Superadmin')
                                     <th>Opsi</th>
                                     @endif
@@ -53,30 +52,12 @@
                             <tbody>
                                 @forelse ($items as $item)
                                 <tr>
-                                    <td>
-                                        <div class="d-flex py-1 align-items-center">
-                                            <div class="avatars mr-2">
-                                                <div class="avatar ratio">
-                                                    <img style="object-fit: cover;
-                                                        width: 40px;
-                                                        height: 40px;" class="b-r-8"
-                                                        src="https://ui-avatars.com/api/?background=4466f2&color=fff&name={{$item->judul_rapat}}">
-                                                </div>
-                                            </div>
-                                            <div class="flex-fill">
-                                                <div class="font-weight-bold">{{$item->judul_rapat}}</div>
-                                                <div class="text-muted">
-                                                    <a href="#" class="text-reset">{{$item->agenda_rapat}}</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>{{$item->tanggal}}</td>
-                                    <td>({{$item->waktu_mulai}} — {{$item->waktu_selesai}})</td>
-                                    <td>{{$item->tempat}}</td>
+                                    <td>{{$item->nama}}</td>
+                                    <td>{{$item->jabatan}}</td>
+                                    <td>{{$item->angkatan}}</td>
                                     @if(Auth::user()->name == 'Superadmin')
                                     <td>
-                                        <a href="{{route('jadwal-rapat.edit', $item->id)}}" class="btn btn-info px-2">
+                                        <a href="{{route('struktur-pengurus.edit', $item->id)}}" class="btn btn-info px-2">
                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                 class="icon icon-tabler icon-tabler-edit" width="16" height="16"
                                                 viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
@@ -88,7 +69,7 @@
                                                 <line x1="16" y1="5" x2="19" y2="8"></line>
                                             </svg>
                                         </a>
-                                        <form action="{{route('jadwal-rapat.destroy', $item->id)}}" method="POST"
+                                        <form action="{{route('struktur-pengurus.destroy', $item->id)}}" method="POST"
                                             class="d-inline">
                                             @csrf
                                             @method('delete')

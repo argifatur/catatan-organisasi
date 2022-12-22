@@ -43,14 +43,7 @@
                         <i class="text-dark text-decoration-none" data-feather="check-square"></i>
                     </a>
                 </li>
-                <li class="text-decoration-none">
-                    <a href="bookmark">
-                        <a href="{{url('dashboard/bookmarks')}}" data-toggle="tooltip" data-placement="bottom"
-                            title="Bookmark">
-                            <i class="text-dark text-decoration-none" data-feather="star"></i>
-                        </a>
-                    </a>
-                </li>
+     
                 <li>
                     <div class="mode">
                         <a href="#" data-toggle="tooltip" data-placement="bottom" title="Dark Mode">
@@ -77,6 +70,12 @@
                         </div>
                     </div>
                     <ul class="profile-dropdown onhover-show-div">
+                        <li>
+                            <a href="{{route('profil')}}">
+                                <i data-feather="user"></i>
+                                <span>Profil</span>
+                            </a>
+                        </li>
                         <li>
                             <a href="{{route('logout')}}" onclick=" event.preventDefault();
                                             document.getElementById('logout-form').submit();">

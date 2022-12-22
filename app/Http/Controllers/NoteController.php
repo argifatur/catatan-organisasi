@@ -58,9 +58,10 @@ class NoteController extends Controller
                 'judul' => $request->judul,
                 'thumbnail' => $finalName,
                 'tanggal' => $request->tanggal,
-                'author' => $request->author,
                 'user_id' => $request->user_id,
+                'author' => $request->author,
                 'content' => $request->content,
+                'nama_agenda' => $request->nama_agenda,
 
             ]);
         } else {
@@ -68,9 +69,10 @@ class NoteController extends Controller
                 'judul' => $request->judul,
                 'thumbnail' => 'thumbnail-default.jpg',
                 'tanggal' => $request->tanggal,
-                'author' => $request->author,
                 'user_id' => $request->user_id,
+                'author' => $request->author,
                 'content' => $request->content,
+                'nama_agenda' => $request->nama_agenda,
             ]);
         }
 
@@ -135,8 +137,9 @@ class NoteController extends Controller
                 'judul' => $request->judul,
                 'thumbnail' => $finalName,
                 'tanggal' => $request->tanggal,
-                'author' => $request->author,
+                'nama_agenda' => $request->nama_agenda,
                 'user_id' => $request->user_id,
+                'author' => $request->author,
                 'content' => $request->content,
             ]);
         } else {
@@ -145,8 +148,9 @@ class NoteController extends Controller
                 'judul' => $request->judul,
                 'thumbnail' => 'thumbnail-default.jpg',
                 'tanggal' => $request->tanggal,
-                'author' => $request->author,
+                'nama_agenda' => $request->nama_agenda,
                 'user_id' => $request->user_id,
+                'author' => $request->author,
                 'content' => $request->content,
             ]);
         }

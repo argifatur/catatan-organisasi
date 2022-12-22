@@ -16,8 +16,9 @@ class CreateCatatanPelajaranTable extends Migration
         Schema::create('catatan_kegiatan', function (Blueprint $table) {
             $table->id();
             $table->string('judul');
-            $table->string('thumbnail')->nullable();
+            $table->string('nama_agenda')->nullable();
             $table->string('author');
+            $table->string('thumbnail')->nullable();
             $table->mediumText('content');
             $table->string('tanggal');
             $table->string('user_id');

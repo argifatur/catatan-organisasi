@@ -1,6 +1,6 @@
 @extends('layouts.backend.master')
 
-@section('title', $item->judul . ' — Catatanmu di Learnity')
+@section('title', $item->judul . ' — Catatan Organisasi')
 @section('content')
 
 <style>
@@ -25,7 +25,7 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{route('dashboard')}}"> <i data-feather="home"></i></a>
                         </li>
-                        <li class="breadcrumb-item">Catatan Pelajaran</li>
+                        <li class="breadcrumb-item"><a href="{{route('catatan-kegiatan.index')}}">Catatan Kegiatan</a></li>
                         <li class="breadcrumb-item active">{{$item->judul}}</li>
                     </ol>
                 </div>
@@ -43,7 +43,7 @@
                             <ul class="blog-social">
                                 <li>{{$item->tanggal}}</li>
                                 <li><i class="icofont icofont-user"></i>{{$item->author}}</li>
-                                <li><i class="icofont icofont-list"></i>{{$item->matkul}}</li>
+                                <li><i class="icofont icofont-list"></i>{{$item->nama_agenda}}</li>
                             </ul>
                             <h1 class="mt-3">
                                 {{$item->judul}}

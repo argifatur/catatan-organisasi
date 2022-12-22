@@ -1,6 +1,6 @@
 @extends('layouts.backend.master')
 
-@section('title', 'Edit Catatan Pelajaran — Learnity')
+@section('title', 'Edit Catatan Kegiatan — Catatan Organisasi')
 @section('content')
 
 @push('create-article-styles')
@@ -12,7 +12,7 @@
     <div class="page-title">
         <div class="card card-absolute mt-5 mt-md-4">
             <div class="card-header bg-primary">
-                <h5 class="text-white">📓📝 • Edit Catatan Pelajaran <span class="d-none d-md-inline"> —
+                <h5 class="text-white">📓📝 • Edit Catatan Kegiatan <span class="d-none d-md-inline"> —
                         {{$item->judul}}</span></h5>
             </div>
             <div class="card-body">
@@ -46,7 +46,7 @@
                         </ul>
                     </div>
                     @endif
-                    <form class="row needs-validation" method="POST" action="{{route('notes.update', $item->id)}}"
+                    <form class="row needs-validation" method="POST" action="{{route('catatan-kegiatan.update', $item->id)}}"
                         enctype="multipart/form-data" novalidate="">
                         @method('PUT')
                         @csrf
@@ -74,7 +74,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6 ">
-                                    <label for="matkul">Nama Mata Kuliah: (Optional)</label>
+                                    <label for="nama_agenda">Nama Agenda: (Optional)</label>
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">
@@ -91,7 +91,7 @@
                                                 </svg>
                                             </span>
                                         </div>
-                                        <input class="form-control" id="matkul" name="matkul" value="{{$item->matkul}}"
+                                        <input class="form-control" id="nama_agenda" name="nama_agenda" value="{{$item->nama_agenda}}"
                                             type="text" required="">
                                     </div>
                                 </div>

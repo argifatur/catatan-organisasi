@@ -1,6 +1,6 @@
 @extends('layouts.backend.master')
 
-@section('title', 'Tulis Catatan Pembelajaran Baru — Learnity')
+@section('title', 'Tulis Catatan Baru — Catatan Organisasi')
 @section('content')
 
 @push('create-article-styles')
@@ -15,11 +15,11 @@
         <div class="page-title">
             <div class="card card-absolute mt-5 mt-md-4">
                 <div class="card-header bg-primary">
-                    <h5 class="text-white">📓📝 • Tulis Catatan Pelajaran Baru</h5>
+                    <h5 class="text-white">📓📝 • Tulis Catatan Baru</h5>
                 </div>
                 <div class="card-body">
                     <p>
-                        Dibawah ini adalah halaman untuk tambah catatan pelajaranmu. <span class="d-none d-md-inline">
+                        Dibawah ini adalah halaman untuk tambah catatan organisasi. <span class="d-none d-md-inline">
                             Catatan yang telah kamu tulis nantinya bisa kamu akses kok dimana saja dan kapan saja.
                             Selamat menulis dan berkreasi, ya!
                         </span>
@@ -50,7 +50,7 @@
                             </ul>
                         </div>
                         @endif
-                        <form class="row needs-validation" method="POST" action="{{route('notes.store')}}"
+                        <form class="row needs-validation" method="POST" action="{{route('catatan-kegiatan.store')}}"
                             enctype="multipart/form-data">
                             @csrf
                             <div class="col-sm-12">
@@ -78,7 +78,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group col-md-6 ">
-                                        <label for="matkul">Nama Mata Kuliah: (Optional)</label>
+                                        <label for="nama_agenda">Nama Agenda: (Optional)</label>
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="basic-addon1">
@@ -95,8 +95,8 @@
                                                     </svg>
                                                 </span>
                                             </div>
-                                            <input class="form-control" id="matkul" name="matkul"
-                                                value="{{old('matkul')}}" type="text" required="">
+                                            <input class="form-control" id="nama_agenda" name="nama_agenda"
+                                                value="{{old('nama_agenda')}}" type="text" required="">
                                         </div>
                                     </div>
                                 </div>

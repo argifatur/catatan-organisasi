@@ -12,20 +12,17 @@ Route::prefix('dashboard')->middleware(['auth'])
     ->group(function () {
         /* -------------------------- Dashboard Index Pages ------------------------- */
         Route::get('/', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
-        /* ------------------------- Jadwal Pelajaran Pages ------------------------- */
-        // Route::get('/jadwal-rapat', 'App\Http\Controllers\JadwalRapatController@index')->name('jadwal-rapat');
-        // Route::get('/jadwal-rapat/atur-jadwal', 'App\Http\Controllers\JadwalRapatController@create')->name('atur-jadwal');
         Route::resource('jadwal-rapat', 'App\Http\Controllers\JadwalRapatController');
+        Route::resource('admin', 'App\Http\Controllers\AdminController');
+        Route::get('profil', 'App\Http\Controllers\AdminController@profil')->name('profil');
+        Route::put('profil/update/{id}', 'App\Http\Controllers\AdminController@profilUpdate')->name('profil-update');
         /* ------------------------- Catatan Pelajaran Pages ------------------------ */
         Route::resource('catatan-kegiatan', 'App\Http\Controllers\NoteController');
+        Route::resource('struktur-pengurus', 'App\Http\Controllers\StrukturController');
         /* ---------------------------- Galeri Foto Pages --------------------------- */
         Route::get('/galeri-foto', 'App\Http\Controllers\GalleryController@index');
         Route::get('/galeri-foto/tambah-foto', 'App\Http\Controllers\GalleryController@create');
         Route::resource('galleries', 'App\Http\Controllers\GalleryController');
-        /* ----------------------------- Bookmarks Pages ---------------------------- */
-        Route::get('/bookmarks', 'App\Http\Controllers\BookmarkController@index');
-        Route::get('/bookmarks/tambah-bookmarks', 'App\Http\Controllers\BookmarkController@create');
-        Route::resource('bookmarks', 'App\Http\Controllers\BookmarkController');
         /* ---------------------------- File Tugas Pages ---------------------------- */
         Route::get('/file-tugas', function () {
             return view('pages.backend.files.index');
@@ -38,13 +35,7 @@ Route::prefix('dashboard')->middleware(['auth'])
         /* ----------------------------- Calendar Pages ----------------------------- */
         Route::get('/calendar', function () {
             return view('pages.backend.calendar.index');
-        });
-        Route::get('/journal', function () {
-            return view('pages.backend.journal.index');
-        });
-        Route::get('/e-book', function () {
-            return view('pages.backend.journal.e-book');
-        });
+        })->name('calendar');
     });
 
 /* -------------------------------------------------------------------------- */

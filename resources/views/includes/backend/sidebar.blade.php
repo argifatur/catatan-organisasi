@@ -18,8 +18,8 @@
                     </div>
                 </li>
 
-                <li class="sidebar-list">
-                    <a class="sidebar-link sidebar-title link-nav" href="{{url('dashboard')}}">
+                <li class="sidebar-list ">
+                    <a class="sidebar-link sidebar-title link-nav {{ Route::currentRouteNamed('dashboard') ? 'active' : '' }}" href="{{url('dashboard')}}">
                         <i data-feather="home"></i>
                         <span>Dashboard</span>
                     </a>
@@ -33,67 +33,62 @@
                 </li>
 
                 <li class="sidebar-list">
-                    <a class="sidebar-link sidebar-title link-nav" href="{{url('/dashboard/file-tugas')}}">
+                    <a class="sidebar-link sidebar-title link-nav {{ Route::currentRouteNamed('struktur-pengurus.index','struktur-pengurus.create','struktur-pengurus.edit') ? 'active' : '' }}" href="{{route('struktur-pengurus.index')}}">
                         <i data-feather="layers"></i>
                         <span>Struktur Organisasi</span>
                     </a>
                 </li>
 
                 <li class="sidebar-list">
-                    <a class="sidebar-link sidebar-title link-nav" href="{{route('jadwal-rapat.index')}}">
+                    <a class="sidebar-link sidebar-title link-nav {{ Route::currentRouteNamed('jadwal-rapat.index','jadwal-rapat.create','jadwal-rapat.edit') ? 'active' : '' }}" href="{{route('jadwal-rapat.index')}}">
                         <i data-feather="book"></i>
                         <span>Jadwal Rapat</span>
                     </a>
                 </li>
-
+                
                 <li class="sidebar-list">
-                    <a class="sidebar-link sidebar-title link-nav" href="{{route('catatan-kegiatan.index')}}">
+                    <a class="sidebar-link sidebar-title link-nav {{ Route::currentRouteNamed('catatan-kegiatan.index','catatan-kegiatan.create','catatan-kegiatan.edit') ? 'active' : '' }}" href="{{route('catatan-kegiatan.index')}}">
                         <i data-feather="edit"></i>
                         <span>Catatan Kegiatan</span>
                     </a>
                 </li>
-
+                @if(Auth::user()->name == 'Superadmin')
+                <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav {{ Route::currentRouteNamed('admin.index','admin.create','admin.edit') ? 'active' : '' }}" href="{{route('admin.index')}}">
+                        <i data-feather="edit"></i>
+                        <span>Admin</span>
+                    </a>
+                </li>
+                
                 <li class="sidebar-list">
                     <a class="sidebar-link sidebar-title link-nav" href="{{url('/dashboard/file-tugas')}}">
                         <i data-feather="paperclip"></i>
                         <span>File Manager</span>
                     </a>
                 </li>
-
+                @endif
                 <li class="sidebar-list">
-                    <a class="sidebar-link sidebar-title" href="javascript:void(0)">
+                    <a class="sidebar-link sidebar-title link-nav" href="{{url('/dashboard/galeri-foto')}}">
                         <i data-feather="image"></i>
                         <span>Galeri Dokumentasi</span>
                     </a>
-                    <ul class="sidebar-submenu">
-                        <li>
-                            <a href="{{url('/dashboard/galeri-foto')}}">
-                                Semua Galeri Dokumentasi
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{url('/dashboard/galeri-foto/tambah-foto')}}">
-                                Upload Foto Baru
-                            </a>
-                        </li>
-                    </ul>
                 </li>
 
                 <li class="sidebar-main-title">
                     <div>
                         <h6>Kelola Todolist & Bookmark</h6>
-                        <p>Todolist, Kalender & Bookmark</p>
+                        <p>Todolist & Kalender</p>
                     </div>
                 </li>
 
                 <li class="sidebar-list">
-                    <a class="sidebar-link sidebar-title link-nav" href="{{url('/dashboard/todolist')}}">
+                    <a class="sidebar-link sidebar-title link-nav {{ Route::currentRouteNamed('todolist.index') ? 'active' : '' }}" href="{{url('/dashboard/todolist')}}">
                         <i data-feather="check-square"></i>
                         <span>Todolist</span>
                     </a>
                 </li>
                 <li class="sidebar-list">
-                    <a class="sidebar-link sidebar-title link-nav" href="{{url('/dashboard/calendar')}}">
+                    <a class="sidebar-link sidebar-title link-nav {{ Route::currentRouteNamed('calendar') ? 'active' : '' }}" href="{{url('/dashboard/calendar')}}">
                         <i data-feather="calendar"></i>
                         <span>Kalender</span>
                     </a>

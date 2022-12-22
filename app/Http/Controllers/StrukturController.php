@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\Models\Bookmarks;
+use App\Models\Struktur;
 
-class BookmarkController extends Controller
+class StrukturController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +14,9 @@ class BookmarkController extends Controller
      */
     public function index()
     {
-        $items = Bookmarks::where('user_id', Auth::user()->email)->get();
+        $items = Struktur::get();
 
-        return view('pages.backend.bookmarks.index', [
+        return view('pages.backend.strukturpengurus.index', [
             'items' => $items
         ]);
     }
@@ -29,7 +28,7 @@ class BookmarkController extends Controller
      */
     public function create()
     {
-        return view('pages.backend.bookmarks.create');
+        return view('pages.backend.strukturpengurus.create');
     }
 
     /**
@@ -41,16 +40,14 @@ class BookmarkController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'judul' => 'required|max:42',
-            'url' => 'required|max:42',
-            'deskripsi' => 'required',
+            'nama' => 'required',
+            'jabatan' => 'required',
+            'angkatan' => 'required|max:14',
         ]);
 
         $input = $request->all();
-
-        $schedules = Bookmarks::create($input);
-
-        return redirect('/dashboard/bookmarks');
+        $struktur = Struktur::create($input);
+        return redirect()->route('struktur-pengurus.index');
     }
 
     /**
@@ -72,8 +69,11 @@ class BookmarkController extends Controller
      */
     public function edit($id)
     {
-        $bookmark = Bookmarks::findOrFail($id);
-        return view('pages.backend.bookmarks.edit', compact('bookmark'));
+        $item = Struktur::findOrFail($id);
+
+        return view('pages.backend.strukturpengurus.edit', [
+            'item' => $item
+        ]);
     }
 
     /**
@@ -87,22 +87,14 @@ class BookmarkController extends Controller
     {
 
         $validated = $request->validate([
-            'judul' => 'required|max:42',
-            'url' => 'required|max:42',
-            'deskripsi' => 'required',
+            'nama' => 'required',
+            'jabatan' => 'required',
+            'angkatan' => 'required|max:14',
         ]);
 
-        $input = $request->all();
+        $struktur = Struktur::find($id)->update($request->all());
 
-        $bookmark = Bookmarks::findOrFail($id);
-        $bookmark->update([
-                'judul' => $request->judul,
-                'url' => $request->url,
-                'deskripsi' => $request->deskripsi,
-                'user_id' => $request->user_id,
-            ]);
-
-        return redirect('/dashboard/bookmarks');
+        return redirect()->route('struktur-pengurus.index');
     }
 
     /**
@@ -113,9 +105,9 @@ class BookmarkController extends Controller
      */
     public function destroy($id)
     {
-        $item = Bookmarks::findOrFail($id);
+        $item = Struktur::findOrFail($id);
         $item->delete();
 
-        return redirect('/dashboard/bookmarks');
+        return redirect()->route('struktur-pengurus.index');
     }
 }

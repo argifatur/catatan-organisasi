@@ -1,6 +1,6 @@
 @extends('layouts.backend.master')
 
-@section('title', 'Todolist — Learnity')
+@section('title', 'Todolist — Catatan Organisasi')
 @section('content')
 
 @push('todo-styles')

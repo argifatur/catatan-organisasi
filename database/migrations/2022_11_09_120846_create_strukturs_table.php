@@ -13,8 +13,12 @@ class CreateStruktursTable extends Migration
      */
     public function up()
     {
-        Schema::create('strukturs', function (Blueprint $table) {
+        Schema::create('struktur_pengurus', function (Blueprint $table) {
             $table->id();
+            $table->string('nama');
+            $table->string('jabatan');
+            $table->string('angkatan');
+            $table->string('user_id');
             $table->timestamps();
         });
     }
@@ -26,6 +30,6 @@ class CreateStruktursTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('strukturs');
+        Schema::dropIfExists('struktur_pengurus');
     }
 }

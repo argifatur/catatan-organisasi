@@ -1,6 +1,6 @@
 @extends('layouts.backend.master')
 
-@section('title', 'Catatan Pelajaran — Learnity')
+@section('title', 'Catatan Kegiatan — Learnity')
 @section('content')
 
 @push('datatable-styles')
@@ -13,11 +13,12 @@
     <div class="page-title">
         <div class="card card-absolute mt-5 mt-md-4">
             <div class="card-header bg-primary">
-                <h5 class="text-white">📝 • Catatan Pelajaranmu</h5>
+                <h5 class="text-white">📝 • Catatan Kegiatan Organisasi</h5>
             </div>
+            @if(Auth::user()->name == 'Superadmin')
             <div class="card-body">
                 <p>
-                    Dibawah ini adalah catatan pelajaran yang telah kamu buat dan tulis. <span
+                    Dibawah ini adalah catatan Kegiatan yang telah kamu buat dan tulis. <span
                         class="d-none d-md-inline">
                         Catatan dibawah juga bisa kamu
                         kamu baca atau lihat dengan menekan logo mata berwarna hijau, edit dengan menekan logo
@@ -26,10 +27,11 @@
                         catatan?
                         tambah
                         catatanmu
-                        <a href="{{url('/dashboard/catatan-pelajaran/tambah-catatan')}}">disini ⇾</a>
+                        <a href="{{route('catatan-kegiatan.create')}}">disini ⇾</a>
                     </span>
                 </p>
             </div>
+            @endif
         </div>
     </div>
 
@@ -43,10 +45,12 @@
                                 <tr>
                                     <th>Author/Penulis</th>
                                     <th>Judul</th>
-                                    <th>Mata Kuliah</th>
+                                    <th>Nama Agenda</th>
                                     <th>Tanggal</th>
                                     <th>Konten</th>
+                                    @if(Auth::user()->name == 'Superadmin')
                                     <th>Opsi</th>
+                                    @endif
                                 </tr>
                             </thead>
                             <tbody>
@@ -54,29 +58,19 @@
                                 <tr>
                                     <td>
                                         <div class="d-flex py-1 align-items-center">
-                                            <div class="avatars mr-2">
-                                                <div class="avatar ratio">
-                                                    <img style="object-fit: cover;
-                                                        width: 40px;
-                                                        height: 40px;" class="b-r-8"
-                                                        src="https://source.boringavatars.com/beam/120/{{$item->author}}?colors=FAD089,FF9C5B,F5634A,ED303C,3B8183">
-                                                </div>
-                                            </div>
                                             <div class="flex-fill">
                                                 <div class="font-weight-bold">{{$item->author}}</div>
-                                                <div class="text-muted"><a href="#"
-                                                        class="text-reset">Author/Penulis</a>
-                                                </div>
                                             </div>
                                         </div>
                                     </td>
                                     <td class="font-weight-bold">{{$item->judul}}</td>
-                                    <td>{{$item->matkul}}</td>
+                                    <td>{{$item->nama_agenda}}</td>
                                     <td>{{$item->tanggal}}</td>
                                     <td>{{substr(strip_tags(htmlspecialchars_decode($item->content)),0,20)}}<a
-                                            href="{{route('notes.show', $item->id)}}"> ...</a></td>
+                                            href="{{route('catatan-kegiatan.show', $item->id)}}"> ...</a></td>
+                                    @if(Auth::user()->name == 'Superadmin')
                                     <td>
-                                        <a href="{{route('notes.show', $item->id)}}" class="btn btn-success px-2">
+                                        <a href="{{route('catatan-kegiatan.show', $item->id)}}" class="btn btn-success px-2">
                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                 class="icon icon-tabler icon-tabler-eye" width="16" height="16"
                                                 viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
@@ -88,7 +82,7 @@
                                                 </path>
                                             </svg>
                                         </a>
-                                        <a href="{{route('notes.edit', $item->id)}}" class="btn btn-info px-2">
+                                        <a href="{{route('catatan-kegiatan.edit', $item->id)}}" class="btn btn-info px-2">
                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                 class="icon icon-tabler icon-tabler-edit" width="16" height="16"
                                                 viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
@@ -100,7 +94,7 @@
                                                 <line x1="16" y1="5" x2="19" y2="8"></line>
                                             </svg>
                                         </a>
-                                        <form action="{{route('notes.destroy', $item->id)}}" method="POST"
+                                        <form action="{{route('catatan-kegiatan.destroy', $item->id)}}" method="POST"
                                             class="d-inline">
                                             @csrf
                                             @method('delete')
@@ -119,26 +113,18 @@
                                             </button>
                                         </form>
                                     </td>
+                                    @endif
                                 </tr>
                                 @empty
                                 @endforelse
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>Author/Penulis</th>
-                                    <th>Judul</th>
-                                    <th>Mata Kuliah</th>
-                                    <th>Tanggal</th>
-                                    <th>Konten</th>
-                                    <th>Opsi</th>
-                                </tr>
-                            </tfoot>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
     @push('datatable-scripts')
     <script src="{{url('cuba/assets/js/datatable/datatables/jquery.dataTables.min.js')}}"></script>
